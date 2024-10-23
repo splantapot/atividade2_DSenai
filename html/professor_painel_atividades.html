@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Principal</title>
+    <link rel="stylesheet" href="/css/global.css">
+
+    <script src="/js/navigator.js"></script>
+</head>
+<body>
+
+    <!-- Menu Principal -->
+    <div id="atividades-main" class="box centered">
+        <label class="title">Olá, #nome</label>
+        <label class="tip">Tela de Atividades</label>
+
+        <div class="fields">
+            <a href="/"><button class="link">Sair</button></a>
+            <a href="/turmas"><button class="link">Voltar para o menu de turmas</button></a>
+            <button class="link" onclick="toggleVisibility('atividades-main', 'atividades-add')">Cadastrar Atividade</button>
+        </div>
+
+        <label class="title">Atividades da Turma:</label>
+        <div class="list">
+            Você não possui atividades cadastradas.
+
+            <!-- Exemplo de card de atividade: -->
+            <!-- <div class="atividade-card">
+                1 #nome<br>
+                <label>Descrição</label> <br>
+            </div> -->
+        </div>
+    </div>
+
+    <!-- Cadastrar Turma -->
+    <div id="atividades-add" class="box centered hide">
+        <a class="link" onclick="toggleVisibility('atividades-add','atividades-main')">Voltar</a>
+        
+        <form action="" method="post">
+            <label class="title">Cadastro de Atividade</label>
+            <div class="fields">
+                <label for="descricao">Descrição:</label>
+                <input name="descricao" required>
+            </div>
+
+            <input type="submit" value="Cadastrar">
+        </form>
+    </div>
+</body>
+</html>

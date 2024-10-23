@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Professor</title>
+    <link rel="stylesheet" href="/css/global.css">
+
+    <script>
+        window.onload = () => {
+            const uri = new URLSearchParams(window.location.search);
+            const error = Number(uri.get('error'));
+            const success = Number(uri.get('success'));
+
+            if (success) {
+                alert('Cadastro realizado com sucesso!');
+            }
+
+            switch (error) {
+                case 1:
+                    alert('As senhas não coincidem!');
+                break;
+                
+                case 2:
+                    alert('O email já foi cadastrado!');
+                break;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="box centered">
+        <label class="title">Cadastro de Professor</label>
+        <form action="/professor_cadastro" method="post">
+            <div class="fields">
+                <label for="nome">Nome:</label>
+                <input name="nome" required>
+
+                <label for="email">Email:</label>
+                <input name="email" type="email" required>
+    
+                <label for="senha">Senha:</label>
+                <input name="senha" type="password" required>
+
+                <label for="confirma">Confirmar Senha:</label>
+                <input name="confirma" type="password" required>
+            </div>
+
+            <input type="submit" value="Cadastrar">
+        </form>
+        <a class="link" href="/">Já possui conta? Entre por aqui!</a>
+    </div>
+</body>
+</html>

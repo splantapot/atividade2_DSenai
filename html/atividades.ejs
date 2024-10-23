@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividades Turma <%=turma_id%></title>
+    <link rel="stylesheet" href="/css/global.css">
+
+    <script src="/js/navigator.js"></script>
+</head>
+<body>
+
+    <!-- Menu Principal -->
+    <div id="atividades-main" class="box centered">
+        <label id="welcome" class="title">Olá, <%= user.nome %>!</label>
+        <label class="tip">Tela de Atividades</label>
+
+        <div class="fields">
+            <a href="/logout"><button class="link">Sair</button></a>
+            <a href="/turmas"><button class="link">Voltar para o menu de turmas</button></a>
+            <button class="link" onclick="toggleVisibility('atividades-main', 'atividades-add')">Cadastrar Atividade</button>
+        </div>
+
+        <label class="title">Atividades da Turma:</label>
+        <div id="atividades-list" class="list">
+            <% atividades.forEach(function(atividade){ %>
+                <div class="atividade-card">
+                    <%= atividade.atividade_id %> <br>
+                    <label> <%= atividade.descricao %> </label> <br>
+                </div>
+            <% }) %>
+            
+            <!-- Exemplo de card de atividade: -->
+            <!-- <div class="atividade-card">
+                1 #nome<br>
+                <label>Descrição</label> <br>
+            </div> -->
+        </div>
+        </div>
+    </div>
+
+    <!-- Cadastrar Atividade -->
+    <div id="atividades-add" class="box centered hide">
+        <a class="link" onclick="toggleVisibility('atividades-add','atividades-main')">Voltar</a>
+        
+        <form action="/atividades" method="post">
+            <label class="title">Cadastro de Atividade</label>
+            <div class="fields">
+                <label for="descricao">Descrição:</label>
+                <input name="descricao" required>
+
+                <input type="hidden" name="turma_id" value="<%=turma_id%>">
+            </div>
+
+            <input type="submit" value="Cadastrar">
+        </form>
+    </div>
+
+    <script>
+        window.onload = () => {
+            const urlParam = new URLSearchParams(window.location.search);
+            const success = urlParam.get('success');
+
+            if (success == 1) {
+                alert('Atividade cadastrada com sucesso!');
+            }
+        }
+
+        const atividadesList = document.getElementById('atividades-list');
+        if (!atividadesList.children.length) {
+            atividadesList.innerHTML = 'Você não possui atividades cadastradas.';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/global.css">
+
+    <script>
+        window.onload = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const error = Number(urlParams.get('error'));
+
+            switch (error) {
+                case 1:
+                    alert('Email não encontrado.');
+                break;
+
+                case 2:
+                    alert('Senha incorreta.');
+                break;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="box centered">
+        <label class="title">Login</label>
+        <form action="/" method="post">
+            <div class="fields">
+                <label for="email">Email:</label>
+                <input name="email" type="email" required>
+    
+                <label for="senha">Senha:</label>
+                <input name="senha" type="password" required>
+            </div>
+
+            <input type="submit" value="Entrar">
+        </form>
+        <a class="link" href="/professor_cadastro">Não possui cadastro? Crie aqui!</a>
+    </div>
+</body>
+</html>
